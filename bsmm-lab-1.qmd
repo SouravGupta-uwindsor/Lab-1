@@ -1,8 +1,8 @@
 ---
 title: "BSMM-lab-1"
 subtitle: "BSMM 8740 Fall 2023"
-author: "Add your name here"
-date: "Add the date here"
+author: "Sourav Gupta"
+date: "11-Set-2023"
 format: html
 editor: visual
 self-contained: true
@@ -25,7 +25,7 @@ library(Lahman)
 dplyr::glimpse(Teams)
 ```
 
-The `Teams` dataset has \_\_\_ observations and \_\_\_ variables.
+The `Teams` dataset has \_3015\_\_ observations and \_48\_\_ variables.
 
 ### Exercise 2
 
