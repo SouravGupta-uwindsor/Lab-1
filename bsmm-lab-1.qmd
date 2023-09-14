@@ -25,7 +25,7 @@ library(Lahman)
 dplyr::glimpse(Teams)
 ```
 
-The `Teams` dataset has \_3015\_\_ observations and \_48\_\_ variables.
+The `Teams` dataset has 3015 observations and 48 variables.
 
 ### Exercise 2
 
