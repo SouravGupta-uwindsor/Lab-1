@@ -55,11 +55,19 @@ mets_ben
 
 ### Exercise 4
 
-...
+
+```{r}
+mets_ben <- mets_ben |>
+  dplyr::mutate(WPct = 1/(1+(RA/RS)*2))
+mets_ben
+mets_ben <- mets_ben |>
+  dplyr::mutate(W_hat = WPct*G)
+mets_ben
+```
 
 ### Exercise 5
 
-...
+
 
 ### Exercise 6
 
