@@ -22,18 +22,36 @@ library(Lahman)
 ### Exercise 1
 
 ```{r glimpse-data}
-dplyr::glimpse(Teams)
+dplyr::glimpse(Teams |> head())
 ```
 
 The `Teams` dataset has 3015 observations and 48 variables.
 
 ### Exercise 2
+```{r}
+?Teams
+```
 
-...
+
+```{r}
+mets <- Teams  |> 
+  dplyr::filter(teamID == "NYN")
+my_mets <- mets |>  
+  dplyr::filter(yearID %in% 2004:2012)
+my_mets |>  
+  dplyr::select(yearID,G,W,L)
+
+```
 
 ### Exercise 3
 
-...
+```{r}
+mets_ben <- Teams |>
+  dplyr::select(yearID, teamID, G, RA, RS,RS = R ) |>
+  dplyr::filter(_ == "NYN" & yearID %in% 2004:2012)
+mets_ben
+```
+
 
 ### Exercise 4
 
