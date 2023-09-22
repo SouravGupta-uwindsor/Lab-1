@@ -2,7 +2,7 @@
 title: "BSMM-lab-1"
 subtitle: "BSMM 8740 Fall 2023"
 author: "Sourav Gupta"
-date: "11-Set-2023"
+date: "22-Set-2023"
 format: html
 editor: visual
 self-contained: true
@@ -28,10 +28,10 @@ dplyr::glimpse(Teams |> head())
 The `Teams` dataset has 3015 observations and 48 variables.
 
 ### Exercise 2
+
 ```{r}
 ?Teams
 ```
-
 
 ```{r}
 mets <- Teams  |> 
@@ -47,14 +47,12 @@ my_mets |>
 
 ```{r}
 mets_ben <- Teams |>
-  dplyr::select(yearID, teamID, G, RA,RS = R ) |>
+  dplyr::select(yearID, teamID, G,W,L, RA,RS = R ) |>
   dplyr::filter(teamID == "NYN" & yearID %in% 2004:2012)
 mets_ben
 ```
 
-
 ### Exercise 4
-
 
 ```{r}
 mets_ben <- mets_ben |>
@@ -67,24 +65,92 @@ mets_ben
 
 ### Exercise 5
 
+```{r}
+
+library(dplyr)
+
+mets_ben <- mets_ben %>%
+  mutate(Performance = ifelse(W > W_hat, "Better", "Worse")) # Code to assess team performance and categorise it as "Better" or "worse" based on wins #
+
+summary_stats <- mets_ben %>%
+  group_by(Performance) %>%
+  summarize(count = n())
+
+summary_stats # Generate summary statistics for categorized performance #
+```
 
 
 ### Exercise 6
 
-...
+```{r}
+best_seasons <- dplyr::arrange(mets_ben, desc(W)) # Sorting mets_ben in descending order of wins to identify best seasons #
+best_seasons
+```
+
 
 ### Exercise 7
 
-...
+```{r}
+library(dplyr)
+mets_ben <- mets_ben %>%
+  mutate(Diff = W - W_hat) %>% # Calculate the difference between Actual and Expected wins #
+  arrange(desc(Diff)) # sort the mets_ben difference in descending order #
+
+View(mets_ben)
+```
+
 
 ### Exercise 8
 
-...
+```{r}
+mets_ben |>
+  dplyr::summarize(
+    num_years = n(), 
+    total_W = sum(W), 
+    total_L = sum(L), 
+    total_WPct = mean(WPct), 
+    sum_resid = sum(Diff) # calculate summary statistics for mets-ben on diff. criterias #
+  )
+```
 
 ### Exercise 9
 
-...
+```{r}
+
+```
+
 
 ### Exercise 10
 
-...
+```{r}
+library(dplyr)
+mets_ben <- mets_ben %>% 
+  dplyr::mutate(
+    gm = ifelse(
+      yearID <= 2004, "Jim Duquette",
+      ifelse(
+        yearID >= 2005 & yearID <= 2010, "Omar Minaya",
+        ifelse(
+          yearID >= 2011 & yearID <= 2012, "Sandy Alderson",
+          NA
+        )
+      )
+    )
+  ) # Used mutate function from dplyr package in R to add a new col to mets_ben #
+mets_ben
+```
+
+### Exercise 11
+
+```{r}
+library(dplyr)
+
+manager_summary_stats <- mets_ben %>%   
+group_by(gm) %>%   
+summarize(num_years = n(),total_W = sum(W), total_L = sum(L),     total_WPct = mean(WPct),sum_resid = mean(Diff) ) # Generate summary statistics for General Manager's performance in 'manager_summary_stats" using number of years, total wins, total losses etc. #
+
+manager_summary_stats
+```
+
+
+
