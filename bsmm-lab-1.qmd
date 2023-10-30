@@ -1,5 +1,5 @@
 ---
-title: "BSMM-lab-1"
+title: "BSMM lab 1"
 subtitle: "BSMM 8740 Fall 2023"
 author: "Sourav Gupta"
 date: "22-Set-2023"
@@ -79,14 +79,12 @@ summary_stats <- mets_ben %>%
 summary_stats # Generate summary statistics for categorized performance #
 ```
 
-
 ### Exercise 6
 
 ```{r}
 best_seasons <- dplyr::arrange(mets_ben, desc(W)) # Sorting mets_ben in descending order of wins to identify best seasons #
 best_seasons
 ```
-
 
 ### Exercise 7
 
@@ -98,7 +96,6 @@ mets_ben <- mets_ben %>%
 
 View(mets_ben)
 ```
-
 
 ### Exercise 8
 
@@ -118,7 +115,6 @@ mets_ben |>
 ```{r}
 
 ```
-
 
 ### Exercise 10
 
@@ -151,6 +147,3 @@ summarize(num_years = n(),total_W = sum(W), total_L = sum(L),     total_WPct = m
 
 manager_summary_stats
 ```
-
-
-
